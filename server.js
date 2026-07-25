@@ -7,6 +7,19 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Root Endpoint - Welcome & API Status
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    service: 'Project Execution Board Backend API',
+    endpoints: {
+      health: '/api/health',
+      sync: '/api/sync (POST)'
+    },
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Health Check Endpoint
 app.get('/api/health', (req, res) => {
   res.json({ 

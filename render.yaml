@@ -1,33 +1,18 @@
 services:
   # -------------------------------------------------------------
-  # 1. Backend Service (Express.js API)
+  # Fullstack Service (Express Backend + React Frontend)
+  # Serves both website UI and API endpoints on a single URL!
   # -------------------------------------------------------------
   - type: web
-    name: project-plan-board-backend
+    name: project-execution-backend
     env: node
     region: singapore
     plan: free
     rootDir: backend
-    buildCommand: npm install
+    buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
       - key: PORT
         value: 5000
       - key: NODE_ENV
         value: production
-
-  # -------------------------------------------------------------
-  # 2. Frontend Service (Vite React Static Site)
-  # -------------------------------------------------------------
-  - type: web
-    name: project-plan-board-frontend
-    env: static
-    region: singapore
-    plan: free
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
